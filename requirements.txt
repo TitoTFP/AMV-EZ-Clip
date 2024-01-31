@@ -1,0 +1,11 @@
+click==8.1.7
+colorama==0.4.6
+customtkinter==5.2.2
+darkdetect==0.8.0
+numpy==1.26.3
+opencv-python==4.9.0.80
+packaging==23.2
+platformdirs==4.2.0
+scenedetect==0.6.2
+tkinter-tooltip==2.2.0
+tqdm==4.66.1
