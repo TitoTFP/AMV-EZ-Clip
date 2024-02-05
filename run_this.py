@@ -4,6 +4,7 @@ from tkinter import filedialog
 from tktooltip import ToolTip
 import getpass
 import cut_videos
+#import pathlib
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -40,6 +41,13 @@ class App(customtkinter.CTk):
         self.execute_cut = customtkinter.CTkButton(self, text="Execute Cut!", command=lambda : self.video_cutting())
         self.execute_cut.grid(row=2, column=0, columnspan=3, sticky="we", padx="10px", pady="3px")
         
+        # Labels
+        self.file_label_1 = customtkinter.CTkLabel(self, text="")
+        self.file_label_1.grid(row=3, column=0, columnspan=3)
+        
+        self.file_label_output = customtkinter.CTkLabel(self, text="")
+        self.file_label_output.grid(row=4, column=0, columnspan=3)
+        
     def to_scene_splitter(self):
         print("Button Clicked!")
         
@@ -65,12 +73,7 @@ class App(customtkinter.CTk):
             except IndexError:
                 pass
         
-        try:
-            self.file_label_1.destroy()
-        except AttributeError:
-            pass
-        self.file_label_1 = customtkinter.CTkLabel(self, text=f"input : {self.video_dir}, selected : {len(self.selected_video_name)} file(s)")
-        self.file_label_1.grid(row=3, column=0, columnspan=3)
+        self.file_label_1.configure(text=f"input : {self.video_dir}, selected : {len(self.selected_video_name)} file(s)")
         
     def output_directory(self):
         if self.output_dir_set == False:
@@ -79,15 +82,11 @@ class App(customtkinter.CTk):
         else:
             self.output_vid_dir = filedialog.askdirectory()
             
-        try:
-            self.file_label_output.destroy()
-        except AttributeError:
-            pass
-        self.file_label_output = customtkinter.CTkLabel(self, text=f"output : {self.output_vid_dir}")
-        self.file_label_output.grid(row=4, column=0, columnspan=3)
+        self.file_label_output.configure(text=f"output : {self.output_vid_dir}")
     
     def video_cutting(self):
-        cut_videos.cut(self.video_dir, self.output_vid_dir, self.selected_video_name)
+        pass
+        cut_videos.cut(self.video_dir, self.output_vid_dir, self.selected_video_name, self.seperate_clips_c.get())
 
 def main():
     app = App()
